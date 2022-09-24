@@ -11,7 +11,7 @@ const NotFound = () => {
       <MetaData title="Không tìm thấy " />
     <div className="PageNotFound">
       <ErrorIcon />
-
+ 
       <Typography>Không tìm thấy trang này</Typography>
       <Link to="/">Trang chủ</Link>
     </div>
