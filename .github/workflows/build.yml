@@ -18,8 +18,6 @@ jobs:
       - name: Install packages
         run: npm i --legacy-peer-deps
 
-      - name: Build source
-        run: npm run start
 
       - name: test esLint
         run: npm run lint
