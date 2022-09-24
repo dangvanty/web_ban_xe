@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
-    "lint": "npx eslint . --fix"
+    "lint": "npx eslint . --fix",
+    "format": "prettier --write \"backend/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,12 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.7.1"
   },

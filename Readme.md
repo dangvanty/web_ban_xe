@@ -17,10 +17,10 @@
 ## Chạy dự án : 
 - <b>Chạy server:</b>
     
-    <code>npm run dev</code> (lưu ý: phải cd tới thư mục gốc- web_ban_xe)
+    <code>npm run dev</code> (lưu ý: phải cd tới thư mục gốc- web_tuoi_hoa)
     <br>
 - <b>chạy client React</b>
-<code>npm start</code> (lưu ý phải cd tới thư mục frontend )
+    <code>npm start</code> (lưu ý phải cd tới thư mục frontend )
 ## Local (For DEV)
 
 - Yêu cầu môi trường
