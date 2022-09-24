@@ -19,8 +19,7 @@ jobs:
         run: npm i --legacy-peer-deps
 
       - name: Build source
-        run: npm run dev
+        run: npm run start
 
-
-      - name: Check vulnerabilities
-        run: npm audit
+      - name: test esLint
+        run: npm run lint

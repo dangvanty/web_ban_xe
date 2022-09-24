@@ -9,12 +9,18 @@
   npm install
   ```
 
-- Build source frontend: 
+- Build source frontend: (hiện tại chưa cần)
 
   ```
   npm run build
   ```
-
+## Chạy dự án : 
+- <b>Chạy server:</b>
+    
+    <code>npm run dev</code> (lưu ý: phải cd tới thư mục gốc- web_ban_xe)
+    <br>
+- <b>chạy client React</b>
+<code>npm start</code> (lưu ý phải cd tới thư mục frontend )
 ## Local (For DEV)
 
 - Yêu cầu môi trường
