@@ -4,7 +4,7 @@
 
 - <b>Cài đặt package </b>
 
- mở terminal và cd  tới backend và cd tới frontend sau đó gõ lệnh: 
+ mở terminal thực hiện ở thư mục gốc dự án và cd tới frontend sau đó gõ lệnh: 
   ``` 
   npm install
   ```
