@@ -5,6 +5,7 @@ import {BrowserRouter as Router ,Routes, Route, } from "react-router-dom"
 import './App.css';
 import NotFound from "./component/layout/Not Found/NotFound.js";
 import Begin from "./Begin";
+import LoginSignUp from "./component/User/LoginSignUp";
 
 function App() {
 
@@ -12,9 +13,9 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Begin/>}/>
+        <Route path='/login' element={<LoginSignUp/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
-
       {/* <Footer/>      */}
     </Router>
   );
