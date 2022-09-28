@@ -2,7 +2,7 @@ const catchAsyncErrors = require('../middleware/catchAsyncError')
 const User = require('../models/user.model')
 const cloudinary = require('cloudinary')
 const sendToken = require('../utils/jwtToken')
-const ErrorHander = require("../utils/errorhander");
+const ErrorHander = require('../utils/errorhander')
 //Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
@@ -26,28 +26,26 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 201, res)
 })
 
-
 // login user
-exports.loginUser =catchAsyncErrors(async (req,res,next)=>{
-  const {email, password}=req.body;
+exports.loginUser = catchAsyncErrors(async (req, res, next) => {
+  const { email, password } = req.body
 
   //check if user has given password and email both
 
-  if (!email|| !password){
-    return next (new ErrorHander("Vui lòng nhập Email và mật khẩu",400))
+  if (!email || !password) {
+    return next(new ErrorHander('Vui lòng nhập Email và mật khẩu', 400))
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email }).select('+password')
 
   if (!user) {
-    return next(new ErrorHander("Email hoặc mật khẩu không đúng", 401));
+    return next(new ErrorHander('Email hoặc mật khẩu không đúng', 401))
   }
 
-  const isPassMatched=await user.comparePassword(password);
-  if(!isPassMatched){
-    return next (new ErrorHander("Email hoặc mật khẩu không đúng",401))
+  const isPassMatched = await user.comparePassword(password)
+  if (!isPassMatched) {
+    return next(new ErrorHander('Email hoặc mật khẩu không đúng', 401))
   }
 
-  sendToken(user,200,res)
-
+  sendToken(user, 200, res)
 })
