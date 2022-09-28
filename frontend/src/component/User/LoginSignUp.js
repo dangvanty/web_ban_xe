@@ -10,9 +10,11 @@ import { clearErrors, login, register } from "../../actions/userActions";
 import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData"
 
+import { useNavigate } from 'react-router-dom'
 const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const location =useLocation()
   const { error, loading, isAuthenticated} = useSelector(
     (state) => state.user
   );
@@ -21,7 +23,8 @@ const LoginSignUp = () => {
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
 
-
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const [user, setUser] = useState({
     name: "",
@@ -34,7 +37,10 @@ const LoginSignUp = () => {
   const [avatar, setAvatar] = useState("https://res.cloudinary.com/dpwv0jwql/image/upload/v1652190780/avatars/Profile_oimxos.png");
   const [avatarPreview, setAvatarPreview] = useState("https://res.cloudinary.com/dpwv0jwql/image/upload/v1652190780/avatars/Profile_oimxos.png");
 
-
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(loginEmail, loginPassword));
+  };
 
   const registerSubmit = (e) => {
     e.preventDefault();
@@ -64,14 +70,21 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+  const shipping =location.search.split("=")[1];
+
+  const redirect = location.search ? shipping : "/account";
+
+  const navigate=useNavigate()
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+    if (isAuthenticated) {
+      navigate(redirect);
+    }
 
-
-  }, [dispatch, error, alert, isAuthenticated]);
+  }, [dispatch, error, alert, isAuthenticated,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -96,7 +109,7 @@ const LoginSignUp = () => {
         <Loader />
       ) : (
         <Fragment>
-            <MetaData title="Đồng Dũng"/>
+            <MetaData title="Tươi Hoa"/>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
@@ -106,15 +119,15 @@ const LoginSignUp = () => {
                 </div>
                 <button ref={switcherTab}></button>
               </div>
-              <form className="loginForm" ref={loginTab}>
+              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
                 <div className="loginEmail">
                   <MailOutlineIcon />
                   <input
                     type="email"
                     placeholder="Email"
                     required
-                    value=""
-                    // onChange={(e) => setLoginEmail(e.target.value)}
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
                   />
                 </div>
                 <div className="loginPassword">
@@ -123,8 +136,8 @@ const LoginSignUp = () => {
                     type="password"
                     placeholder="Mật khẩu"
                     required
-                    value=""
-                    // onChange={(e) => setLoginPassword(e.target.value)}
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
                 <Link to="/password/forgot">Quên mật khẩu ?</Link>
