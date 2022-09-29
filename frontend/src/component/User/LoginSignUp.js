@@ -109,7 +109,7 @@ const LoginSignUp = () => {
         <Loader />
       ) : (
         <Fragment>
-            <MetaData title="Tươi Hoa"/>
+            <MetaData title="Đăng Nhập | Tươi Hoa"/>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>

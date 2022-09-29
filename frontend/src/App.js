@@ -13,19 +13,18 @@ import { useEffect } from "react";
 import { loadUser } from './actions/userActions';
 import UserOptions from'./component/layout/Header/UserOptions.js';
 function App() {
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
-  // console.log(":::::::::",user)
-  // useEffect(() => {
-  //   WebFont.load({
-  //     google: {
-  //       families: ["Roboto", "Droid Sans", "Chilanka"],
-  //     },
-  //   })
-  //   store.dispatch(loadUser())
-  // },[]);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Roboto", "Droid Sans", "Chilanka"],
+      },
+    });
+    store.dispatch(loadUser())
+  },[]);
   return (
     <Router>
-      {/* {isAuthenticated && <UserOptions user={user} />} */}
+      {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route exact path="/" element={<Begin/>}/>
         <Route path='/login' element={<LoginSignUp/>}/>

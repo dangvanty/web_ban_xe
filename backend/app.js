@@ -20,6 +20,7 @@ routes(app)
 app.use('/', (req, res) => {
   res.send('hello world')
 })
+
 //middleware for error
 
 app.use(errorMiddleware)
