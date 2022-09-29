@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
 const fileUpload = require('express-fileupload')
-const errorMiddleware = require('./middleware/erorr')
+const path = require('path')
+const errorMiddleware = require('./middleware/error')
 
 if (process.env.NODE_ENV !== 'PRODUCTION') {
   require('dotenv').config({ path: 'backend/config/config.env' })
@@ -17,10 +18,12 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(fileUpload())
 // call router
 routes(app)
-app.use('/', (req, res) => {
-  res.send('hello world')
-})
 
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+})
 //middleware for error
 
 app.use(errorMiddleware)
