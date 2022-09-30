@@ -163,7 +163,27 @@
 .shiftToRight {
     transform: translateX(100%);
 }
-  
+.loginPassword,.signUpPassword {
+    position: relative;
+}
+.icon-show {
+    color: gray;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon-show svg {
+    width: 20px;
+    height: 20px;
+}
 @media screen and (max-width: 600px) {
     .LoginSignUpContainer {
       background-color: white;

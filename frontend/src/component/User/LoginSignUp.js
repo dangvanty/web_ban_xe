@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userActions";
 import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData"
-
+import {eyeHidenLogin,eyeShowLogin} from '../svgIcon/IconSvg'
 import { useNavigate } from 'react-router-dom'
 const LoginSignUp = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,24 @@ const LoginSignUp = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  const [showPass, setShowPass] = useState("password");
+  const clickShowPass = () => {
+    setShowPass(showPass === "password" ? "text" : "password");
+  };
+  // check pass at register form : 
+  const [passRe,setPassRe]=useState("")
+  const [showPass1, setShowPass1] = useState("password");
+  const clickShowPass1 = () => {
+    setShowPass1(showPass1 === "password" ? "text" : "password");
+  };
+  const [showRePass, setShowRePass] = useState("password");
+  const clickShowRePass = () => {
+    setShowRePass(showRePass === "password" ? "text" : "password");
+  };
+  const changePassRe = (e)=>{
+    setPassRe(e.target.value)
+  }
+  
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -44,6 +62,9 @@ const LoginSignUp = () => {
 
   const registerSubmit = (e) => {
     e.preventDefault();
+    if (password !== passRe){
+      return alert.error('Kiểm tra mật khẩu nhập lại!')
+    }
 
     const myForm = new FormData();
 
@@ -133,12 +154,15 @@ const LoginSignUp = () => {
                 <div className="loginPassword">
                   <LockOpenIcon />
                   <input
-                    type="password"
+                    type={`${showPass}`}
                     placeholder="Mật khẩu"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
+                  <div className="icon-show" onClick={clickShowPass}>
+                    {showPass === "password" ? eyeHidenLogin : eyeShowLogin}
+                  </div>
                 </div>
                 <Link to="/password/forgot">Quên mật khẩu ?</Link>
                 <input type="submit" value="Đăng nhập" className="loginBtn" />
@@ -174,13 +198,30 @@ const LoginSignUp = () => {
                 <div className="signUpPassword">
                   <LockOpenIcon />
                   <input
-                    type="password"
+                    type={`${showPass1}`}
                     placeholder="Mật khẩu"
                     required
                     name="password"
                     value={password}
                     onChange={registerDataChange}
                   />
+                  <div className="icon-show" onClick={clickShowPass1}>
+                    {showPass1 === "password" ? eyeHidenLogin : eyeShowLogin}
+                  </div>
+                </div>
+                <div className="signUpPassword">
+                  <LockOpenIcon />
+                  <input
+                    type={showRePass}
+                    placeholder="Nhập lại mật khẩu"
+                    required
+                    name="password"
+                    value={passRe}
+                    onChange={changePassRe}
+                  />
+                  <div className="icon-show" onClick={clickShowRePass}>
+                    {showRePass === "password" ? eyeHidenLogin : eyeShowLogin}
+                  </div>
                 </div>
 
                 <div id="registerImage">
