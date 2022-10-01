@@ -8,7 +8,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 //         newProductReducer,
 //         reviewReducer,
 //         productReviewsReducer} from './reducers/productReducer';
-import{userReducer} from'./reducers/userReducer'
+import{userReducer, forgotPasswordReducer} from'./reducers/userReducer'
 // import { cartReducer } from './reducers/cartReducer';
 // import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer,orderReducerUser } from './reducers/orderReducer';
 const reducer= combineReducers({
@@ -17,7 +17,7 @@ const reducer= combineReducers({
     // productDetails: productDetailsReducer,
     user: userReducer,
     // profile: profileReducer,
-    // forgotPassword:forgotPasswordReducer,
+    forgotPassword:forgotPasswordReducer,
     // // cart:cartReducer,
     // // newOrder: newOrderReducer,
     // // myOrders: myOrdersReducer,
