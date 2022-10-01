@@ -12,6 +12,8 @@ import store from "./store";
 import { useEffect } from "react";
 import { loadUser } from './actions/userActions';
 import UserOptions from'./component/layout/Header/UserOptions.js';
+import ForgotPassword  from './component/User/ForgotPassword'
+import ResetPassword  from './component/User/ResetPassword'
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
@@ -28,6 +30,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Begin/>}/>
         <Route path='/login' element={<LoginSignUp/>}/>
+        <Route path='/password/forgot' element = {<ForgotPassword/>}/>
+        <Route path='/password/reset/:token' element = {<ResetPassword/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
       {/* <Footer/>      */}
