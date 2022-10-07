@@ -1,0 +1,69 @@
+@import "./Variable.scss";
+* {
+  margin: 0;
+  font-family: "Roboto";
+  scroll-behavior: smooth;
+}
+body {
+  &::-webkit-scrollbar {
+      width: 9px;
+      box-shadow: $boxShadow;
+      background-color: transparent;
+      padding-right: 0.1rem !important;
+  }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: $colorYellow;
+  }
+}
+
+.heading {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  z-index: 5;
+  &__title h3 {
+      font-size: 2rem;
+      font-weight: 500;
+  }
+  &__hr {
+      width: 200px;
+      height: 2px;
+      background-color: $colorYellow;
+      margin: 0 auto;
+      margin-top: 1rem;
+  }
+}
+
+.heading-detail {
+  margin-bottom: 2rem;
+  &__title h3 {
+      font-size: 2rem;
+      font-weight: 500;
+  }
+  &__hr {
+      width: 200px;
+      height: 2px;
+      background-color: $colorYellow;
+  }
+}
+
+.text-white {
+  color: white;
+  text-shadow: 2px 2px 5px black;
+}
+
+.link-color-orange {
+  color: $colorYellow;
+  text-decoration: none;
+  transition: 0.5s;
+  &:hover {
+      color: $colorViolet;
+  }
+}
+
+a {
+  text-decoration: none;
+}

@@ -97,7 +97,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   try {
     await sendEmail({
       email: user.email,
-      subject: `Khôi phục mật khẩu tài khoản ở Tươi Hoa website`,
+      subject: `Khôi phục mật khẩu tài khoản ở Tuoi Hoa website`,
       message,
     })
 

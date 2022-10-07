@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(231, 231, 231);
+    background-color: rgb(187, 182, 154);
     position: fixed;
     top: 0%;
     left: 0;
@@ -189,8 +189,8 @@
       background-color: white;
     }
     .LoginSignUpBox {
-      width: 100vw;
-      height: 95vh;
+      width: 80vw;
+      height: 75vh;
     }
     .login_signUp_toggle {
       height: 5vmax;
