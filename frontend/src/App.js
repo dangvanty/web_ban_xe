@@ -14,6 +14,11 @@ import ForgotPassword  from './component/User/ForgotPassword'
 import ResetPassword  from './component/User/ResetPassword'
 import Menu from "./component/layout/Header/Menu";
 import Home from "./component/layout/Home/Home";
+import Shop from "./component/layout/Shop/Shop";
+import ProtectedRoute from "./component/helper/ProtectedRoute";
+import Profile from "./component/User/Profile";
+import UpdateProfile from "./component/User/UpdateProfile";
+import UpdatePassword from "./component/User/UpdatePassword";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const fake={avatar:{url:null}}
@@ -33,6 +38,13 @@ function App() {
         <Route path='/login' element={<LoginSignUp/>}/>
         <Route path='/password/forgot' element = {<ForgotPassword/>}/>
         <Route path='/password/reset/:token' element = {<ResetPassword/>}/>
+
+        <Route path="/Shop" element={<Shop/>}/>
+
+        <Route path="/account" element={(<ProtectedRoute><Profile /></ProtectedRoute>)} />
+        <Route path="/me/update" element={(<ProtectedRoute><UpdateProfile /></ProtectedRoute>)} />
+        <Route path="/password/update" element={(<ProtectedRoute><UpdatePassword /></ProtectedRoute>)} />
+
         <Route path='*' element={<NotFound/>}/>
       </Routes>
       {/* <Footer/>      */}

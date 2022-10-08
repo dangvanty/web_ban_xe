@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
-import "./LoginSignUp.css";
+import "./LoginSignUp.scss";
 import Loader from "../layout/Loader/Loader";
 import { Link, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";

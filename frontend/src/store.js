@@ -1,29 +1,29 @@
 import {legacy_createStore as createStore, combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-// import { newReviewReducer, 
-//         productDetailsReducer, 
-//         productsReducer, 
-//         productReducer, 
-//         newProductReducer,
-//         reviewReducer,
-//         productReviewsReducer} from './reducers/productReducer';
-import{userReducer, forgotPasswordReducer} from'./reducers/userReducer'
+import { newReviewReducer, 
+        productDetailsReducer, 
+        productsReducer, 
+        // productReducer, 
+        newProductReducer,
+        reviewReducer,
+        productReviewsReducer} from './reducers/productReducer';
+import{userReducer, forgotPasswordReducer, profileReducer} from'./reducers/userReducer'
 // import { cartReducer } from './reducers/cartReducer';
 // import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer,orderReducerUser } from './reducers/orderReducer';
 const reducer= combineReducers({
     
-    // products: productsReducer,
+    products: productsReducer,
     // productDetails: productDetailsReducer,
     user: userReducer,
-    // profile: profileReducer,
+    profile: profileReducer,
     forgotPassword:forgotPasswordReducer,
     // // cart:cartReducer,
     // // newOrder: newOrderReducer,
     // // myOrders: myOrdersReducer,
     // // orderDetails: orderDetailsReducer,
     // // newReview:newReviewReducer,
-    // // product: productReducer,
+    // product: productReducer,
     // // allOrders: allOrdersReducer ,
     // allUsers:allUsersReducer,
     // // newProduct: newProductReducer ,
