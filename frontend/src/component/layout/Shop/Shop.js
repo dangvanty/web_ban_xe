@@ -55,17 +55,16 @@ const Shop = () => {
     const [name, setName] = useState("")
 
     const buttonSerchName = () => {
-        navigate(name.trim() ? `/products/${name}` : "/products");
+        navigate(name.trim() ? `/Shop/${name}` : "/Shop");
       };
     
     const keyEnter = (event)=>{
       if (event.key === 'Enter') {
-        navigate(name.trim() ? `/products/${name}` : "/products");
+        navigate(name.trim() ? `/Shop/${name}` : "/Shop");
         }
     }
     const {loading, error,products, productsCount,resultPerPage,filteredProductsCount}= useSelector(state=>state.products)
     let count =filteredProductsCount;
-    console.log(products)
     useEffect(() => {
 
         if (error) {
@@ -83,7 +82,7 @@ const Shop = () => {
             <Fragment>
                 <MetaData title="Cửa hàng Tuoi Hoa!"/>
                 <Banner/>
-               <Link onClick={handlerReturn} className='productsHeadingLink' to="/products"><h2 className='productsHeading'><span style={{color:"#EAB543"}}>{searchcategory}</span> - Sản phẩm của Tuoi Hoa
+               <Link onClick={handlerReturn} className='productsHeadingLink' to="/Shop"><h2 className='productsHeading'><span style={{color:"#EAB543"}}>{searchcategory}</span> - Sản phẩm của Tuoi Hoa
                     <div className='productsHeading-line' ></div>
                 </h2>
                 </Link>

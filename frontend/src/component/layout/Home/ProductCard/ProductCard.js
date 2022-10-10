@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { Rating } from "@material-ui/lab";
 import {formatNumber} from "../../../helper/formatPrice"
+import {to_slug} from "../../../helper/formatToSlug"
 import './ProductCard.scss'
 const ProductCard = ({product}) => {
   const options={
@@ -12,7 +13,7 @@ const ProductCard = ({product}) => {
 }
 
   return (
-    <Link className='productCard' to={`/product/${product._id}`}>
+    <Link className='productCard' to={`/Shop/product/${to_slug(product.name)}.${product._id}.html`}>
         <img src={product.images[0].url} alt={product.name}/>
         <p>{product.name}</p>{" "} <span className='productCardSpan'>({product.numOfReviews} đánh giá)</span>
         <div>

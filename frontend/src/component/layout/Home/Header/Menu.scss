@@ -69,6 +69,16 @@
           &:hover::after {
             width: 100%;
           }
+          .number {
+            position: absolute;
+            right: -10px;
+            top: -14px;
+            color: white;
+            background-color: #EAB543;
+            padding: 0 0.4rem;
+            border-radius: 50px;
+            line-height: 20px;
+          }
         }
       }
     }

@@ -15,6 +15,7 @@ body {
       border-radius: 10px;
       background-color: $colorYellow;
   }
+  overflow-x: hidden;
 }
 
 .heading {
@@ -66,4 +67,15 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.greenColor {
+  color: green !important;
+}
+.redColor {
+  color: red !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

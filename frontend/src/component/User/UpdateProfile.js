@@ -9,6 +9,7 @@ import { useAlert } from "react-alert";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
 import {useNavigate} from 'react-router-dom'
+import Resizer from "react-image-file-resizer";
 const UpdateProfile = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -39,19 +40,39 @@ const UpdateProfile = () => {
     dispatch(updateProfile(myForm));
 };
 
-  const updateProfileDataChange = (e) => {
-    const reader = new FileReader();
+  const updateProfileDataChange =(e) => {
+    const file = e.target.files[0]
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        console.log('::::uri',uri);
+        setAvatar(uri)
+        setAvatarPreview(uri)
+      },
+      "base64",
+      200,
+      200
+    );
+    // const decode= convertBase64(file)
+    
+    // setAvatar(decode)
+    // setAvatarPreview(decode)
+    // const reader = new FileReader();
+    // reader.readAsDataURL(e.target.files[0]);
+    
+    // reader.onload = () => {
+    //   if (reader.readyState === 2) {
+    //     setAvatarPreview(reader.result);
+    //     setAvatar(reader.result);
+    //   }
+    // };
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatarPreview(reader.result);
-        setAvatar(reader.result);
-      }
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
 };
-
   useEffect(() => {
     if (user) {
       setName(user.name);
