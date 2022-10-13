@@ -38,7 +38,7 @@ const Services=()=> {
                 bảo đảm quyền lợi tốt nhất và mang lại sự hài lòng cho khách hàng
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
             <div className="post-item">
@@ -53,7 +53,7 @@ const Services=()=> {
                 hiện đại nhằm cải tiến chất lượng phục vụ hướng đến sự hài lòng của khách hàng
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
             <div className="post-item">
@@ -67,7 +67,7 @@ const Services=()=> {
                 của khách hàng về dầu nhớt dành cho xe số, xe ga, xe côn tay, xe mô tô
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
             <div className="post-item">
@@ -81,7 +81,7 @@ const Services=()=> {
               Website; Fanpage Xe Máy Tuoi Hoa hoặc gọi ngay đến số Hotline: 0283 929 379
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
             <div className="post-item">
@@ -95,7 +95,7 @@ const Services=()=> {
                 giảm thiểu chi phí khắc phục khi xảy ra tai nạn và an tâm trên mọi nẻo đường.
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
             <div className="post-item">
@@ -110,7 +110,7 @@ const Services=()=> {
                 Thay thế các phụ kiện….nhằm mang lại một dáng vẻ hoàn toàn mới cho chiếc xe máy của bạn.
               </div>
               <div className="btn">
-                <Link to={`/RegisterService`}>Đăng ký ngay</Link>
+                <Link to={`/contact`}>Đăng ký ngay</Link>
               </div>
             </div>
         </div>

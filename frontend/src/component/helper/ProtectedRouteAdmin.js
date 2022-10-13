@@ -1,17 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet } from 'react-router-dom'
 
-const ProtectedRouteAdmin = ({ children}) => {
-      const { loading, isAuthenticated,user} = useSelector((state) => state.user);
+const ProtectedRouteAdmin = () => {
+  const { loading, isAuthenticated, user } = useSelector((state) => state.user)
 
-      if (loading) return null;
-
-
-      return (isAuthenticated && user.role ==="admin")
-            ? children
-            : <Navigate to="/login" replace />;
-
-
-};
-export default ProtectedRouteAdmin;
+  if (loading) return null
+  const userRole = user.role
+  return isAuthenticated && userRole === 'admin' ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" />
+  )
+}
+export default ProtectedRouteAdmin

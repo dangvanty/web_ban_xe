@@ -34,7 +34,7 @@
   }
   .createProductForm > div > input,
   .createProductForm > div > select,
-  .createProductForm > div > textarea {
+  .createProductForm > div > textarea{
     padding: 1vmax 4vmax;
     padding-right: 1vmax;
     width: 100%;
@@ -44,10 +44,25 @@
     font: 300 0.9vmax cursive;
     outline: none;
   }
+  .css-b62m3t-container {
+    z-index: 9999;
+    width: 100% !important;
+    .css-1s2u09g-control {
+      width: 100%;
+    }
+    .css-tlfecz-indicatorContainer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .css-qc6sy-singleValue {
+      width: 200px;
+    }
+  }
+
   
   .createProductForm > div > svg {
     position: absolute;
-    transform: translateX(1vmax);
+    transform: translateX(-4vmax);
     font-size: 1.6vmax;
     color: rgba(0, 0, 0, 0.623);
   }

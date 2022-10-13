@@ -33,6 +33,7 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import OrderDetails from "./component/Order/OrderDetails";
 import EditOrder from "./component/admin/EditOrder";
 import OrderList from "./component/admin/OrderList";
+import RegisterService from "./component/layout/Contact/Contact";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const fake={avatar:{url:null}}
@@ -56,27 +57,31 @@ function App() {
         <Route path="/Shop" element={<Shop/>}/>
         <Route path="/Shop/:keyword" element={<Shop/>}/>
         <Route path="/Shop/product/:slug.:id.html" element={<ProductDetails/>}/>
+        
+        <Route element={<ProtectedRoute/>}>
+        <Route path="/account" element={<Profile />} />
+        <Route path="/me/update" element={<UpdateProfile />} />
+        <Route path="/password/update" element={<UpdatePassword />} />
+        <Route path="/login/shipping" element={<Shipping />} />
+        <Route path="/success" element={<OrderSuccess/>} />
+        <Route path="/orders" element={<MyOrders/>} />
+        <Route path="/order/:id" element={<OrderDetails/>} />
+        <Route path="/order/confirm" element={<ConfirmOrder />} />
+        </Route>
 
-        <Route path="/account" element={(<ProtectedRoute><Profile /></ProtectedRoute>)} />
-        <Route path="/me/update" element={(<ProtectedRoute><UpdateProfile /></ProtectedRoute>)} />
-        <Route path="/password/update" element={(<ProtectedRoute><UpdatePassword /></ProtectedRoute>)} />
 
         <Route  path='/cart' element = {<Cart/>}/>
-        <Route path="/login/shipping" element={(<ProtectedRoute><Shipping /></ProtectedRoute>)} />
+        <Route  path='/contact' element = {<RegisterService/>}/>
+        
+        <Route element={<ProtectedRouteAdmin/>}>
+        <Route path="/admin/dashboard" element={<DashBoard/>} />
+        <Route path="/admin/products" element={<ProductList />} />
+        <Route path="/admin/product" element={<NewProduct/>} />
+        <Route path="/admin/product/:id" element={<UpdateProduct/>} />
+        <Route path="/admin/orders" element={<OrderList/>} />
+        <Route path="/admin/order/:id" element={<EditOrder/>} />
+        </Route>
 
-        <Route path="/success" element={(<ProtectedRoute><OrderSuccess/></ProtectedRoute>)} />
-        <Route path="/orders" element={(<ProtectedRoute><MyOrders/></ProtectedRoute>)} />
-
-        <Route path="/order/confirm" element={(<ProtectedRoute><ConfirmOrder /></ProtectedRoute>)} />
-        <Route path="/order/:id" element={(<ProtectedRoute><OrderDetails/></ProtectedRoute>)} />
-
-        <Route path="/admin/dashboard" element={(<ProtectedRoute ><DashBoard/></ProtectedRoute>)} />
-        <Route path="/admin/products" element={ (<ProtectedRouteAdmin><ProductList /></ProtectedRouteAdmin>)} />
-        <Route path="/admin/product" element={(<ProtectedRoute ><NewProduct/></ProtectedRoute>)} />
-        <Route path="/admin/product/:id" element={(<ProtectedRoute ><UpdateProduct/></ProtectedRoute>)} />
-
-        <Route path="/admin/orders" element={(<ProtectedRoute ><OrderList/></ProtectedRoute>)} />
-        <Route path="/admin/order/:id" element={(<ProtectedRoute ><EditOrder/></ProtectedRoute>)} />
 
         <Route path='*' element={<NotFound/>}/>
       </Routes>

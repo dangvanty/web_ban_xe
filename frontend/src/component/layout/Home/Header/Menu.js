@@ -62,6 +62,7 @@ const Menu = ({ user }) => {
   function logoutUser() {
     dispatch(logout())
     localStorage.removeItem("cartItems")
+    window.location.reload()
     alert.success('Đăng xuất thành công!')
   }
 
@@ -153,7 +154,7 @@ const Menu = ({ user }) => {
                         <div className="number">{cartItems?.length}</div>
                         <ShoppingCartIcon
                           style={{
-                            color: cartItems.length > 0 ? '#EAB543' : 'unset',
+                            color: cartItems.length > 0 ? '#EAB543' : 'inherit',
                             fontSize: '20px',
                           }}
                         />
@@ -210,7 +211,7 @@ const Menu = ({ user }) => {
                         <div className="number">{cartItems?.length}</div>
                         <ShoppingCartIcon
                           style={{
-                            color: cartItems.length > 0 ? '#EAB543' : 'unset',
+                            color: cartItems.length > 0 ? '#EAB543' : 'inherit',
                             fontSize: '20px',
                           }}
                         />

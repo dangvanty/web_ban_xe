@@ -4,6 +4,7 @@ import {
   clearErrors,
   updateProduct,
   getProductDetails,
+  getAdminProduct,
 } from "../../actions/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
@@ -17,6 +18,8 @@ import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productContant";
 import {useNavigate, useParams} from "react-router-dom"
 import './UpdateProduct.scss'
+import CreatableSelect from 'react-select/creatable';
+let value=""
 const UpdateProduct = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -24,6 +27,7 @@ const UpdateProduct = () => {
   const {id} = useParams();
 
   const { error, product } = useSelector((state) => state.productDetails);
+  const { error: lisproductError, products } = useSelector((state) => state.products);
 
   const {
     loading,
@@ -39,16 +43,29 @@ const UpdateProduct = () => {
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
-  const categories = [
-    "Nội thất phòng khách",
-    "Nội thất phòng ngủ",
-    "Nội thất phòng thờ",
-    "Đồ gỗ mỹ nghệ"
-  ];
-
+console.log('products',products)
   const productId = id;
+  const createOption = (label) => ({
+    label,
+    value: label.toLowerCase()
+  });
+  const productCateGory = [...new Set(products.map(item => item.category))]
+  // // console.log("product:::::", productCateGory)
+  // const defaultOptions = [...new Set(productCateGory.map(item => createOption(item)))]
 
+  // // console.log('defaultOptions::::::',defaultOptions)
+  // const handleSelect =  (newValue)=>{
+  //   const newValueInput=createOption(`${newValue.label}`)    
+  //   value=newValueInput.value
+  // }
+  // const handleChange = (newValue) => {
+  //   handleSelect(newValue)
+  // };
+
+  // const valueCategory = createOption(product.category)
+  // console.log('valueCate',valueCategory)
+  // const handleCreate = (inputValue) => {      
+  // }
   useEffect(() => {
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
@@ -75,6 +92,7 @@ const UpdateProduct = () => {
       navigate("/admin/products");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
+    dispatch(getAdminProduct())
   }, [
     dispatch,
     alert,
@@ -126,7 +144,7 @@ const UpdateProduct = () => {
 
   return (
     <Fragment>
-      <MetaData title="Create Product" />
+      <MetaData title="Update Product" />
       <div className="dashboard">
         <SideBar />
         <div className="newProductContainer">
@@ -178,12 +196,18 @@ const UpdateProduct = () => {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="">Chọn loại sản phẩm</option>
-                {categories.map((cate) => (
+                {productCateGory.map((cate) => (
                   <option key={cate} value={cate}>
                     {cate}
                   </option>
                 ))}
               </select>
+               {/* <CreatableSelect
+                  isClearable
+                  onChange={handleChange}
+                  onInputChange={handleCreate}
+                  options={defaultOptions}
+                /> */}
             </div>
 
             <div>

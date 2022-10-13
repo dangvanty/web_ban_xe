@@ -1,0 +1,142 @@
+@import "../../../Variable.scss";
+.input-admin {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    label {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    input {
+      height: $inputHeight;
+      max-width: $inputMaxWidth;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border: 1px solid gray;
+      outline: none;
+      border-radius: $inputRadius;
+      &:focus {
+        border-color: $colorViolet;
+      }
+    }
+    textarea {
+      padding: 0.5rem;
+      max-width: $inputMaxWidth;
+      resize: none;
+      outline: none;
+      border-radius: $inputRadius;
+      font-size: 1rem;
+      &:focus {
+        border-color: $colorViolet;
+      }
+    }
+    .text-danger {
+      margin-top: 0.2rem;
+      color: $colorYellow;
+    }
+    .icon-avatar {
+      label {
+        width: 40px;
+        height: 40px;
+        background-color: $colorYellow;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0;
+        color: white;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .img-update {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+.RegisterService {
+    .content {
+        padding: 2rem 11rem;
+    }
+    .title {
+        &_header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: $colorYellow;
+        }
+        &_small {
+            font-style: italic;
+            color: $colorYellow;
+        }
+        margin-bottom: 1rem;
+    }
+    input {
+        max-width: 100%;
+    }
+    textarea {
+        max-width: 100%;
+    }
+    .MuiFormControl-root {
+        width: 100%;
+    }
+    .MuiInputBase-input {
+        padding: 14px 0 7px !important;
+    }
+    .Mui-focused {
+        color: black !important;
+    }
+    small {
+        display: block;
+    }   
+   
+}
+.btn-wrap{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .btn-reset {
+        padding: 0.5rem 1.5rem;
+        width:20%;
+        border: 2px solid $colorYellow;
+        background-color:$colorYellow;
+        color: white;
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+            background-color: white;
+            color: $colorYellow;
+        }
+    }
+    .btn {
+        padding: 0.5rem 1.5rem;
+        width: 70%;
+        border: 2px solid $colorYellow;
+        background-color:$colorYellow;
+        color: white;
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+            background-color: white;
+            color: $colorYellow;
+        }
+    }
+}
+
+label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-shrink.MuiFormLabel-filled {
+    font-size: 1.4rem !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 500 !important;
+    color: black !important;
+}

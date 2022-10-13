@@ -18,11 +18,16 @@
 .products {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5vmax;
+    padding: 0 ;
     justify-content: center;
     min-height: 55vh;
   }
 
+  .shop-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 .productsHeading-line{
     margin-top: 0.5rem;
   }
@@ -96,12 +101,12 @@
     color: #1b1a1a;
 }
 
-.filterBox {
-    width: 12vmax;
-    position: absolute;
-    top: 27vmax;
-    left: 2vmax;
-
+.filterBox,.result-filer {
+    width: 100%;
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    margin: 20px;
 
 }
 .categoryBox {
@@ -126,7 +131,7 @@
 @media screen and (max-width: 600px) {
     .filterBox {
       width: 40vmax;
-      position: static;
+      display: block;
       margin: auto;
     }
 

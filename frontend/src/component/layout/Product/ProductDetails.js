@@ -7,10 +7,11 @@ import {
   getProductDetails,
   clearErrors,
   newReview,
+  getProduct,
 } from '../../../actions/productAction'
 
 import MetaData from '../MetaData'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ReviewCard from './ReviewCard '
 import Loader from '../Loader/Loader'
 import Footer from '../Home/Footer/Footer'
@@ -26,6 +27,8 @@ import {
 import { Rating } from '@material-ui/lab'
 import { formatNumber } from '../../helper/formatPrice'
 import { NEW_PRODUCT_RESET } from '../../../constants/productContant'
+import ProductCard from '../Home/ProductCard/ProductCard'
+
 const ProductDetails = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
@@ -53,6 +56,9 @@ const ProductDetails = () => {
       }
     }
   }
+  const {
+    products,
+  } = useSelector((state) => state.products)
 
   const options = {
     size: 'large',
@@ -84,7 +90,7 @@ const ProductDetails = () => {
     if (product.Stock === 0) {
       return alert.error('Sản phẩm đã bán hết, mời bạn chọn sản phẩm khác!')
     }
-    const checkItems = JSON.parse(localStorage.getItem('cartItems'))
+    const checkItems = JSON.parse(localStorage.getItem('cartItems'))||[]
     for (let item of checkItems) {
       console.log(item)
       if (item.product === id) {
@@ -113,6 +119,20 @@ const ProductDetails = () => {
     setOpen(false)
   }
 
+  const [category, setCategory]=useState("")
+  let arr=[]
+  const check = ()=>{
+    products.map(item=>{
+      if(item.category === product.category){
+        console.log('item::::::::',item)
+        if(item._id !== product._id){
+          arr.push(item)
+        }
+      }
+    })
+  } 
+  check()
+  console.log('products::::::::::',products)
   useEffect(() => {
     
     if (error) {
@@ -130,7 +150,8 @@ const ProductDetails = () => {
       dispatch({ type: NEW_PRODUCT_RESET })
     }
     dispatch(getProductDetails(id))
-  }, [dispatch, id, error, alert, reviewError, success])
+    dispatch(getProduct(category))
+  }, [dispatch, id, error, alert,category, reviewError, success])
 
   return (
     <Fragment>
@@ -165,7 +186,21 @@ const ProductDetails = () => {
                   ({product.numOfReviews} lượt đánh giá)
                 </span>
               </div>
-              <div className="detailsBlock-3">
+              {product.category ==="xe máy" ? (
+                <div className="detailsBlock-3">
+                <div className="btn-lienhe">
+                <Link to={`/contact`}>Liên hệ mua hàng</Link>
+               </div>
+
+                <p>
+                  Trạng thái:
+                  <b className={product.Stock < 1 ? 'redColor' : 'greenColor'}>
+                    {product.Stock < 1 ? ' Bán hết' : ' Còn hàng'}
+                  </b>
+                </p>
+              </div>
+              ):(
+                <div className="detailsBlock-3">
                 <h1>{`${formatNumber(product.price)} đ`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
@@ -183,7 +218,7 @@ const ProductDetails = () => {
                   </b>
                 </p>
               </div>
-
+              )}
               <div className="detailsBlock-4">
                 Mô tả : <p>{product.description}</p>
               </div>
@@ -238,6 +273,15 @@ const ProductDetails = () => {
           ) : (
             <p className="noReviews">Chưa có đánh giá nào!</p>
           )}
+          <h3 className="reviewsHeading">Sản phẩm liên quan</h3>
+           <div className="reviewsHeading-line"></div>
+           <div className="products">
+           
+              {arr &&
+                arr.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+          </div>
         </Fragment>
       )}
       <Footer />

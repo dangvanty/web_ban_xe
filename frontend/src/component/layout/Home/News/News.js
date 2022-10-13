@@ -72,7 +72,7 @@ const News = ()=> {
               </div>
               <div className="text">
                 <div className="text-title">
-                  <Link to={`/ListNews/${ok.id}`} title={ok.name}>
+                  <Link to={`/#`} title={ok.name}>
                     {ok.name}
                   </Link>
                 </div>

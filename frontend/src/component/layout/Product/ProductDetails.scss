@@ -89,7 +89,7 @@
     color:  rgba(0, 0, 0, 0.74);;
   }
   
-  .detailsBlock-3-1 > button:last-child {
+  .detailsBlock-3-1 > button:last-child , .btn-lienhe {
     border: none;
     cursor: pointer;
     color: rgba(16, 16, 15, 0.858);
@@ -102,7 +102,7 @@
     outline: none;
   }
   
-  .detailsBlock-3-1 > button:last-child:hover {
+  .detailsBlock-3-1 > button:last-child:hover, .btn-lienhe:hover {
     background-color: rgb(250, 161, 7);
     color: black;
     transform: scale(1.1);
@@ -226,6 +226,7 @@
     font-style: italic;
     text-align: center;
     color: rgba(0, 0, 0, 0.548);
+    margin-bottom: 30px;
   }
   
   @media screen and (max-width: 600px) {
