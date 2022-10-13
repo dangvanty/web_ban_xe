@@ -51,7 +51,7 @@ const News = ()=> {
   },
 ]
   return (
-    <div className="News">
+    <div className="News" id="news">
       <div className="heading">
         <div className="heading__title">
           <h3>

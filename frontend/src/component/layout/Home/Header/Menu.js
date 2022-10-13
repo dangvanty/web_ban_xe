@@ -146,7 +146,7 @@ const Menu = ({ user }) => {
                       <Link to="">Giới thiệu</Link>
                     </li>
                     <li className="item">
-                      <Link to="/ListNews">Tin tức</Link>
+                      <Link to="">Tin tức</Link>
                     </li>
                     <li className="item">
                       <Link to="/cart" style={{ display: 'flex' }}>
@@ -203,7 +203,7 @@ const Menu = ({ user }) => {
                       <Link to="">Giới thiệu</Link>
                     </li>
                     <li className="item">
-                      <Link to="/ListNews">Tin tức</Link>
+                      <Link to="">Tin tức</Link>
                     </li>
                     <li className="item">
                       <Link to="/cart" style={{ display: 'flex' }}>

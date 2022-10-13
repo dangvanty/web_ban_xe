@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import './Shop.css'
+import './Shop.scss'
 import { clearErrors, getAdminProduct, getProduct } from '../../../actions/productAction'
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../Loader/Loader'
@@ -25,7 +25,10 @@ const categories = [
 ]
 const productPrice = [
     {
-        id:1, content:"dưới 10 triệu", value: [0,100]
+        id:0, content:"Tất cả giá", value: [0,1000]
+    },
+    {
+        id:1, content:"dưới 10 triệu", value: [0,10]
     },
     {
         id:2, content:"Từ 10 đến 30 triệu", value: [10,30]
@@ -42,7 +45,7 @@ const productPrice = [
 ]
 const Shop = () => {
   const navigate = useNavigate()
-  const { keyword } = useParams()
+  // const { keyword } = useParams()
   const dispatch = useDispatch()
   const alert = useAlert()
   const [currentPage, setCurrentPage] = useState(1)
@@ -55,25 +58,29 @@ const Shop = () => {
   const setCurrentPageNo = (e) => {
     setCurrentPage(e)
   }
-  const priceHandler = (event, newPrice) => {
-    setPrice(newPrice)
+  const priceHandler = (e) => {
+    const inputPrice = JSON.parse("[" + e.target.value + "]");
+    setPrice(inputPrice)
+    console.log("price:::::::::",inputPrice)
+    // console.log("Newprice:::::::::",newPrice)
   }
   const handlerReturn = () => {
     setPrice([0, 1000])
     setRatings(0)
     setCategory('')
     setCurrentPage(1)
+    setKeyword('')
     setName('')
   }
   const [name, setName] = useState('')
+  const [keyword, setKeyword] = useState('')
 
   const buttonSerchName = () => {
-    navigate(name.trim() ? `/Shop/${name}` : '/Shop')
+    setKeyword(name)
   }
-
   const keyEnter = (event) => {
-    if (event.key === 'Enter') {
-      navigate(name.trim() ? `/Shop/${name}` : '/Shop')
+    if (event.charCode === 13) {
+      setKeyword(name)
     }
   }
   const {
@@ -94,7 +101,7 @@ const Shop = () => {
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings))
-    dispatch(getAdminProduct())
+    // dispatch(getAdminProduct())
   }, [dispatch, keyword, currentPage, price, category, ratings, alert, error])
 
   return (
@@ -105,17 +112,19 @@ const Shop = () => {
         <Fragment>
           <MetaData title="Cửa hàng Tuoi Hoa!" />
           <Banner />
-          <Link
-            onClick={handlerReturn}
-            className="productsHeadingLink"
-            to="/Shop"
-          >
-            <h2 className="productsHeading">
-               Sản
-              phẩm của Tuoi Hoa
-              <div className="productsHeading-line"></div>
-            </h2>
-          </Link>
+          <div className='productsHeading-wrap'>
+            <Link
+              onClick={handlerReturn}
+              className="productsHeadingLink"
+              to="/Shop"
+            >
+              <h2 className="productsHeading">
+                Sản
+                phẩm của Tuoi Hoa
+                <div className="productsHeading-line"></div>
+              </h2>
+            </Link>
+          </div>
           <div className="shop-wrap">
             <div className="filterBox">
               <fieldset>
@@ -134,12 +143,22 @@ const Shop = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <span>
+                  {/* <span>
                     <Input
                       id="component-helper"
                       onChange={(e) => setName(e.target.value)}
                       placeholder="tên sản phẩm"
                       onKeyPress={keyEnter}
+                    />
+                  </span> */}
+                  <span>
+                    <Input
+                      id="component-helper"
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="tên sản phẩm"
+                      value={name}
+                      onKeyPress={keyEnter}
+                      
                     />
                   </span>
                 </Box>
@@ -163,10 +182,10 @@ const Shop = () => {
                 /> */}
                 <select
                     value={price}
-                    onChange={(e) => {setPrice(e.target.value)}}
+                    onChange={priceHandler}
                         // setsearchCategory(e.target.value)}}
                     >
-                <option value="[0,1000]">Tất cả giá</option>
+                {/* <option v}>Tất cả giá</option> */}
                 {productPrice.map((cate) => (
                   <option key={cate.id} value={cate.value}>
                     {cate.content}
@@ -219,9 +238,9 @@ const Shop = () => {
                 />
               </fieldset>
             </div>
-            <div className='result-filer'>Kết quả tìm kiếm
-            {name && (
-                <span style={{ color: '#EAB543' }}>tên sản phẩm: <span style={{color: 'tomato' }}>{name}</span></span> 
+            <div className='result-filer'><u>Kết quả tìm kiếm</u> 
+            {keyword && (
+                <span style={{ color: '#EAB543' }}>tên sản phẩm: <span style={{color: 'tomato' }}>{keyword}</span></span> 
             )} {searchcategory && (
                 <span style={{ color: '#EAB543' }}>loại sản phẩm: <span style={{color: 'tomato' }}>{searchcategory}</span></span>
             )}
