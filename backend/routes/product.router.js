@@ -15,9 +15,7 @@ const router = express.Router()
 
 router.route('/products').get(getAllProducts)
 
-router
-  .route('/allproducts')
-  .get(getAdminProducts)
+router.route('/allproducts').get(getAdminProducts)
 router
   .route('/admin/products')
   .get(isAuthenticatedUser, authorizeRoles('admin'), getAdminProducts)
