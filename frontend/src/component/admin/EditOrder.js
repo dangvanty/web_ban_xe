@@ -17,6 +17,7 @@ import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./EditOrder.scss";
 import { useParams } from "react-router-dom";
 import {formatNumber} from "../helper/formatPrice"
+import { to_slug } from "../helper/formatToSlug";
 const EditOrder = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
@@ -124,7 +125,7 @@ const EditOrder = () => {
                       order.orderItems.map((item) => (
                         <div key={item.product}>
                           <img src={item.image} alt="Product" />
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/Shop/product/${to_slug(item.name)}.${item.product}.html`}>
                             {item.name}
                           </Link>{" "}
                           <span>

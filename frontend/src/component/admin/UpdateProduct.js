@@ -172,6 +172,7 @@ console.log('products',products)
                 step="0.01"
                 placeholder="Giá - đơn vị triệu đồng"
                 min={0}
+                max={10000}
                 required
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
