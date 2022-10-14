@@ -20,7 +20,7 @@ const ProductCard = ({product}) => {
            <Rating {...options }/>{" "}
             
         </div>
-        {product.category ==="xe máy" ?(<span className='price'>Liên hệ mua hàng</span>):(
+        {product.category ==="xe máy" ?(<span className='contact-buy'>Liên hệ mua hàng</span>):(
           <span className='price'>{`${formatNumber(product.price)} đ`}</span>
 
         )}

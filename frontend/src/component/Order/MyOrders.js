@@ -26,7 +26,10 @@ const MyOrders = () => {
   const { user } = useSelector((state) => state.user);
 
   const deleteOrderHandler = (id) => {
-    dispatch(deleteOrderForUser(id));
+    if(window.confirm('Bạn có chắc chắn xóa đơn hàng này không?')){
+
+      dispatch(deleteOrderForUser(id));
+    }
   };
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 200, flex: 0.4 },

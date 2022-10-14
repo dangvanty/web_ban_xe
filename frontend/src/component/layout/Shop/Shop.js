@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import './Shop.scss'
-import { clearErrors, getAdminProduct, getProduct } from '../../../actions/productAction'
+import { clearErrors, getProduct, getProductForCata } from '../../../actions/productAction'
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../Loader/Loader'
 import ProductCard from '../Home/ProductCard/ProductCard'
@@ -15,13 +15,14 @@ import { useAlert } from 'react-alert'
 import Typography from '@material-ui/core/Typography'
 import { useNavigate } from 'react-router-dom'
 import Banner from '../Banner/Banner'
-const categories = [
-  { id: 1, search: 'Nội thất phòng khách', content: 'Nội thất phòng khách' },
-  {
-    id: 2,
-    search: '',
-    content: 'Tất cả',
-  },
+import Footer from '../Home/Footer/Footer'
+const reviewOptions = [
+  { id: 1,  content: 'Tất cả đánh giá',value: 0 },
+  { id: 2,  content: 'Từ 1 - 5 sao',value: 1 },
+  { id: 3,  content: 'Từ 2 - 5 sao',value: 2 },
+  { id: 4,  content: 'Từ 3 - 5 sao',value: 3 },
+  { id: 5,  content: 'Từ 4 - 5 sao',value: 4 },
+  { id: 6,  content: 'Đánh giá 5 sao',value: 5 },
 ]
 const productPrice = [
     {
@@ -49,20 +50,65 @@ const Shop = () => {
   const dispatch = useDispatch()
   const alert = useAlert()
   const [currentPage, setCurrentPage] = useState(1)
-  const [price, setPrice] = useState([0, 1000])
+  const [price, setPrice] = useState([0, 100000])
 
   const [category, setCategory] = useState('')
   const [searchcategory, setsearchCategory] = useState('Tất cả')
   const [ratings, setRatings] = useState(0)
-
+  const [checkPrice, setCheckPrice]= useState('Tất cả')
+  const [checkReviews, setCheckReviews]= useState('Tất cả')
   const setCurrentPageNo = (e) => {
     setCurrentPage(e)
   }
   const priceHandler = (e) => {
-    const inputPrice = JSON.parse("[" + e.target.value + "]");
+    const input= e.target.value
+    const inputPrice = JSON.parse("[" + input + "]");
     setPrice(inputPrice)
-    console.log("price:::::::::",inputPrice)
+    switch (input){
+      case '10,30':
+        setCheckPrice('Từ 10 đến 30 triệu')
+        break
+      case '0,10':
+        setCheckPrice('dưới 10 triệu')
+        break
+      case '30,60':
+        setCheckPrice('Từ 30 triệu đến 60 triệu')
+        break
+      case '60,150':
+        setCheckPrice('Từ 60 đến 150 triệu')
+        break
+      case '150,1000':
+        setCheckPrice('Trên 150 triệu')
+        break
+      default:
+        setCheckPrice('Tất cả')
+        break
+    }
     // console.log("Newprice:::::::::",newPrice)
+  }
+  const ratingsHandler = (e) => {
+    const input = +e.target.value
+    setRatings(input)
+    switch (input){
+      case 1:
+        setCheckReviews('Từ 1 - 5 sao')
+        break
+      case 2:
+        setCheckReviews('Từ 2 - 5 sao')
+        break
+      case 3:
+        setCheckReviews('Từ 3 - 5 sao')
+        break
+      case 4:
+        setCheckReviews('Từ 4 - 5 sao')
+        break
+      case 5:
+        setCheckReviews('Đánh giá 5 sao')
+        break
+      default:
+        setCheckReviews('Tất cả')
+        break
+    }
   }
   const handlerReturn = () => {
     setPrice([0, 1000])
@@ -71,6 +117,8 @@ const Shop = () => {
     setCurrentPage(1)
     setKeyword('')
     setName('')
+    setCheckPrice('Tất cả')
+    setCheckReviews('Tất cả')
   }
   const [name, setName] = useState('')
   const [keyword, setKeyword] = useState('')
@@ -91,17 +139,19 @@ const Shop = () => {
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products)
-  const productCateGory = [...new Set(products.map(item => item.category))]
+  const {products:productCata} = useSelector((state) => state.productCata)
+  const productCateGory = [...new Set(productCata.map(item => item.category))]
   const productCateGorySelect=[...productCateGory]
   let count = filteredProductsCount
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (error) {
       alert.error(error)
       dispatch(clearErrors())
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings))
-    // dispatch(getAdminProduct())
+    dispatch(getProductForCata())
   }, [dispatch, keyword, currentPage, price, category, ratings, alert, error])
 
   return (
@@ -214,9 +264,9 @@ const Shop = () => {
                 <select
                 value={category}
                 onChange={(e) => {setCategory(e.target.value)
-                    setsearchCategory(e.target.value)}}
+                    setsearchCategory(e.target.value!==""?e.target.value:"Tất cả")}}
               >
-                <option value="">Tất cả sản phẩm</option>
+                <option value="">Tất cả loại sản phẩm</option>
                 {productCateGorySelect.map((cate) => (
                   <option key={cate} value={cate}>
                     {cate}
@@ -226,7 +276,7 @@ const Shop = () => {
               </fieldset>
               <fieldset>
                 <Typography component="legend">Đánh giá</Typography>
-                <Slider
+                {/* <Slider
                   value={ratings}
                   onChange={(e, newRating) => {
                     setRatings(newRating)
@@ -235,7 +285,19 @@ const Shop = () => {
                   valueLabelDisplay="auto"
                   min={0}
                   max={5}
-                />
+                /> */}
+                <select
+                    value={ratings}
+                    onChange={ratingsHandler}
+                        // setsearchCategory(e.target.value)}}
+                    >
+                {/* <option v}>Tất cả giá</option> */}
+                {reviewOptions.map((cate) => (
+                  <option key={cate.id} value={cate.value}>
+                    {cate.content}
+                  </option>
+                ))}
+                </select>
               </fieldset>
             </div>
             <div className='result-filer'><u>Kết quả tìm kiếm</u> 
@@ -243,6 +305,10 @@ const Shop = () => {
                 <span style={{ color: '#EAB543' }}>tên sản phẩm: <span style={{color: 'tomato' }}>{keyword}</span></span> 
             )} {searchcategory && (
                 <span style={{ color: '#EAB543' }}>loại sản phẩm: <span style={{color: 'tomato' }}>{searchcategory}</span></span>
+            )} {price && (
+                <span style={{ color: '#EAB543' }}>giá sản phẩm: <span style={{color: 'tomato' }}>{checkPrice}</span></span>
+            )} {checkReviews && (
+                <span style={{ color: '#EAB543' }}>đánh giá sản phẩm: <span style={{color: 'tomato' }}>{checkReviews}</span></span>
             )}
             </div>
             <div className="products">
@@ -273,6 +339,7 @@ const Shop = () => {
           )}
         </Fragment>
       )}
+      <Footer/>
     </Fragment>
   )
 }

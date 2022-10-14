@@ -27,12 +27,14 @@ const EditOrder = () => {
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
-
-    const myForm = new FormData();
+    if(window.confirm(`Bạn có chắc muốn chuyển trạng thái sang:\n${status.toLocaleUpperCase()}`))
+    {
+      const myForm = new FormData();
 
     myForm.set("status", status);
 
     dispatch(updateOrder(id, myForm));
+  }
   };
 
  
@@ -66,7 +68,7 @@ const EditOrder = () => {
             <Loader />
           ) : (
             <div
-              className="confirmOrderPage"
+              className="confirmOrderPage confirmOrderPage-wrap"
               style={{
                 display: order.orderStatus === "Đã giao hàng" ? "block" : "grid",
               }}

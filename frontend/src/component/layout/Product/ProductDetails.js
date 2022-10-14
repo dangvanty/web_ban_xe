@@ -7,7 +7,7 @@ import {
   getProductDetails,
   clearErrors,
   newReview,
-  getProduct,
+  getProductForCata,
 } from '../../../actions/productAction'
 
 import MetaData from '../MetaData'
@@ -58,7 +58,7 @@ const ProductDetails = () => {
   }
   const {
     products,
-  } = useSelector((state) => state.products)
+  } = useSelector((state) => state.productCata)
 
   const options = {
     size: 'large',
@@ -119,22 +119,25 @@ const ProductDetails = () => {
     setOpen(false)
   }
 
-  const [category, setCategory]=useState("")
   let arr=[]
   const check = ()=>{
-    products.map(item=>{
-      if(item.category === product.category){
-        console.log('item::::::::',item)
-        if(item._id !== product._id){
-          arr.push(item)
+    let b = products.sort(() => Math.random() - 0.5)
+    let a =0 
+    b.map(item=>{
+      if(a<4){
+        if(item.category === product.category){
+          if(item._id !== product._id){
+            arr.push(item)
+            a++
+          }
         }
       }
     })
+    
   } 
   check()
-  console.log('products::::::::::',products)
   useEffect(() => {
-    
+    window.scrollTo(0, 0);
     if (error) {
       alert.error(error)
       dispatch(clearErrors())
@@ -150,8 +153,8 @@ const ProductDetails = () => {
       dispatch({ type: NEW_PRODUCT_RESET })
     }
     dispatch(getProductDetails(id))
-    dispatch(getProduct(category))
-  }, [dispatch, id, error, alert,category, reviewError, success])
+    dispatch(getProductForCata())
+  }, [dispatch, id, error, alert, reviewError, success])
 
   return (
     <Fragment>

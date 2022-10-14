@@ -39,11 +39,11 @@ export default function Footer() {
               <div className="item-link">
                 <div className="link">
                   <div className="icon">{iconFooter}</div>
-                  <Link to="#">Trang chủ</Link>
+                  <Link to="/">Trang chủ</Link>
                 </div>
                 <div className="link">
                   <div className="icon">{iconFooter}</div>
-                  <Link to="#">Dịch vụ</Link>
+                  <Link to="/contact">Dịch vụ</Link>
                 </div>
                 <div className="link">
                   <div className="icon">{iconFooter}</div>
@@ -51,11 +51,11 @@ export default function Footer() {
                 </div>
                 <div className="link">
                   <div className="icon">{iconFooter}</div>
-                  <Link to="#">Tin tức</Link>
+                  <Link to="/">Tin tức</Link>
                 </div>
                 <div className="link">
                   <div className="icon">{iconFooter}</div>
-                  <Link to="#">Liên hệ</Link>
+                  <Link to="/contact">Liên hệ</Link>
                 </div>
               </div>
             </div>

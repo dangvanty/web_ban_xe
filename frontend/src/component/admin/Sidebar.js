@@ -42,7 +42,7 @@ const Sidebar = () => {
           Đơn hàng
         </p>
       </Link>
-      <Link to="/admin/users">
+      {/* <Link to="/admin/users">
         <p>
           <PeopleIcon /> Người dùng
         </p>
@@ -52,7 +52,7 @@ const Sidebar = () => {
           <RateReviewIcon />
           Đánh giá
         </p>
-      </Link>
+      </Link> */}
     </div>
   );
 };

@@ -3,6 +3,9 @@ import {
   ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
+  CATA_PRODUCT_FAIL,
+  CATA_PRODUCT_REQUEST,
+  CATA_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_REQUEST,
   ADMIN_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_FAIL,
@@ -31,7 +34,7 @@ import {
 
 } from '../constants/productContant'
 // get all products
-export const getProduct=(keyword="",currentPage=1, price=[0,1000],category,ratings=0)=>async (dispatch)=>{
+export const getProduct=(keyword="",currentPage=1, price=[0,100000],category,ratings=0)=>async (dispatch)=>{
     try{
         dispatch({
             type:ALL_PRODUCT_REQUEST
@@ -145,6 +148,22 @@ export const getAdminProduct = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ADMIN_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+// Get All Products For get cata
+export const getProductForCata = () => async (dispatch) => {
+  try {
+    dispatch({ type:  CATA_PRODUCT_REQUEST });
+    const { data } = await axios.get("/api/v1/allproducts");
+    dispatch({
+      type: CATA_PRODUCT_SUCCESS,
+      payload: data.products,
+    });
+  } catch (error) {
+    dispatch({
+      type:  CATA_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
   }

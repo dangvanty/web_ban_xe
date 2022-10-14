@@ -142,11 +142,11 @@ const Menu = ({ user }) => {
                     <li className="item">
                       <Link to="/Shop">Cửa hàng</Link>
                     </li>
-                    <li className="item">
+                    {/* <li className="item">
                       <Link to="">Giới thiệu</Link>
-                    </li>
+                    </li> */}
                     <li className="item">
-                      <Link to="">Tin tức</Link>
+                      <Link to="/contact">Liên hệ</Link>
                     </li>
                     <li className="item">
                       <Link to="/cart" style={{ display: 'flex' }}>
@@ -199,11 +199,11 @@ const Menu = ({ user }) => {
                     <li className="item">
                       <Link to="/Shop">Cửa hàng</Link>
                     </li>
-                    <li className="item">
+                    {/* <li className="item">
                       <Link to="">Giới thiệu</Link>
-                    </li>
+                    </li> */}
                     <li className="item">
-                      <Link to="">Tin tức</Link>
+                      <Link to="/contact">Liên hệ</Link>
                     </li>
                     <li className="item">
                       <Link to="/cart" style={{ display: 'flex' }}>

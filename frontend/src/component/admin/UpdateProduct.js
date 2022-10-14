@@ -169,6 +169,7 @@ console.log('products',products)
               <AttachMoneyIcon />
               <input
                 type="number"
+                step="0.01"
                 placeholder="Giá - đơn vị triệu đồng"
                 min={0}
                 required

@@ -29,7 +29,8 @@ const ProductList = () => {
   );
 
   const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id));
+    if(window.confirm('Bạn có chắc muốn xóa sản phẩm này không ?')){
+    dispatch(deleteProduct(id));}
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const ProductList = () => {
 
     if (isDeleted) {
       alert.success("Xóa thành công sản phẩm");
-      navigate("/admin/dashboard");
+      navigate("/admin/products");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
 

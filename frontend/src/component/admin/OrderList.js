@@ -28,7 +28,10 @@ const OrderList = () => {
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
   const deleteOrderHandler = (id) => {
-    dispatch(deleteOrder(id));
+    if(window.confirm('Bạn có chắc muốn xóa đơn hàng này không ?')){
+      dispatch(deleteOrder(id));
+    }
+    
   };
 
   useEffect(() => {
