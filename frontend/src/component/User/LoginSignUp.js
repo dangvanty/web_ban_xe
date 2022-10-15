@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
-import "./LoginSignUp.css";
+import "./LoginSignUp.scss";
 import Loader from "../layout/Loader/Loader";
 import { Link, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -11,6 +11,7 @@ import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData"
 import {eyeHidenLogin,eyeShowLogin} from '../svgIcon/IconSvg'
 import { useNavigate } from 'react-router-dom'
+import Resizer from "react-image-file-resizer";
 const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -96,6 +97,25 @@ const LoginSignUp = () => {
   const redirect = location.search ? shipping : "/account";
 
   const navigate=useNavigate()
+  const updateProfileDataChange =(e) => {
+    const file = e.target.files[0]
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        console.log('::::uri',uri);
+        setAvatar(uri)
+        setAvatarPreview(uri)
+      },
+      "base64",
+      200,
+      200
+    );
+};
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -130,7 +150,7 @@ const LoginSignUp = () => {
         <Loader />
       ) : (
         <Fragment>
-            <MetaData title="Đăng Nhập | Tươi Hoa"/>
+            <MetaData title="Đăng Nhập | Tuoi Hoa"/>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>

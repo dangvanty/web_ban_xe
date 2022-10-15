@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./ResetPassword.css";
+import "./ResetPassword.scss";
 import Loader from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, resetPassword } from "../../actions/userActions";
@@ -55,7 +55,7 @@ const ResetPassword = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="Đổi mật khẩu| Tươi hoa" />
+          <MetaData title="Đổi mật khẩu| Tuoi hoa" />
           <div className="resetPasswordContainer">
             <div className="resetPasswordBox">
               <h2 className="resetPasswordHeading">Thay đổi mật khẩu</h2>

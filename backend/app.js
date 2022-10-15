@@ -14,16 +14,17 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 app.use(express.json({ limit: '50mb' }))
 app.use(express.json())
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(fileUpload())
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 // call router
 routes(app)
 
-app.use(express.static(path.join(__dirname, '../frontend/build')))
+// app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+// })
 //middleware for error
 
 app.use(errorMiddleware)
