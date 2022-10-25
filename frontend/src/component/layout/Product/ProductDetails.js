@@ -138,10 +138,10 @@ const ProductDetails = () => {
   check()
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (error) {
-      alert.error(error)
-      dispatch(clearErrors())
-    }
+    // if (error) {
+    //   alert.error(error)
+    //   dispatch(clearErrors())
+    // }
 
     if (reviewError) {
       alert.error('Không gửi được!')
