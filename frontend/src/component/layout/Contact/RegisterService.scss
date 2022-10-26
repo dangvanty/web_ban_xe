@@ -149,3 +149,9 @@ label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLab
     font-weight: 500 !important;
     color: black !important;
 }
+
+@media screen and(max-width:768px) {
+  .RegisterService .content {
+    padding: 2rem 2rem;
+  }
+}
