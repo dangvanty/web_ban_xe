@@ -90,7 +90,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false })
 
-  const resetPasswordUrl = `https://localhost:3000/password/reset/${resetToken}`
+  const resetPasswordUrl = `https://web-tuoi-hoa.herokuapp.com/password/reset/${resetToken}`
 
   const message = `Link reset mật khẩu của bạn là: \n\n ${resetPasswordUrl} \n\n Nếu bạn không cần email này thì vui lòng bỏ qua nó.`
 

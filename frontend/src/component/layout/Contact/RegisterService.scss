@@ -20,6 +20,15 @@
         border-color: $colorViolet;
       }
     }
+    .css-b62m3t-container {
+      z-index: 1;
+      .css-1s2u09g-control{
+        border: 1px solid gray;
+        outline: none;
+        border-radius: 4px;
+      }
+    }
+   
     textarea {
       padding: 0.5rem;
       max-width: $inputMaxWidth;
@@ -139,4 +148,13 @@ label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLab
     margin-bottom: 0.5rem !important;
     font-weight: 500 !important;
     color: black !important;
+}
+
+@media screen and ( max-width : 768px ) {
+  .RegisterService  {
+    .content{
+      padding: 2rem 2rem;
+    }
+   
+  }
 }

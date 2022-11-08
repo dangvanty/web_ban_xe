@@ -316,6 +316,7 @@ const Shop = () => {
                 products.map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))}
+                {!products.length && (<span style={{color: 'tomato' }}>Không có sản phẩm nào ứng kết quả với tìm kiếm!</span>)}
             </div>
           </div>
 

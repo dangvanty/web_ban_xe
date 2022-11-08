@@ -8,6 +8,7 @@ import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import {formatNumber} from "../helper/formatPrice"
+import { to_slug } from "../helper/formatToSlug";
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const {id} =useParams();
@@ -86,7 +87,7 @@ const OrderDetails = () => {
                   order.orderItems.map((item) => (
                     <div key={item.product}>
                       <img src={item.image} alt="Product" />
-                      <Link to={`/product/${item.product}`}>
+                      <Link to={`/Shop/product/${to_slug(item.name)}.${item.product}.html`}>
                         {item.name}
                       </Link>{" "}
                       <span>

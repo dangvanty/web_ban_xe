@@ -155,6 +155,7 @@ const NewProduct = () => {
                 type="number"
                 step="0.01"
                 min={0}
+                max={10000}
                 placeholder="Giá - đơn vị triệu đồng"
                 required
                 onChange={(e) => setPrice(e.target.value)}
