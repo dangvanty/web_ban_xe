@@ -26,32 +26,19 @@
 .loading>div {
   width: 40px;
   height: 40px;
-  display: grid;
-  animation: sh6-0 1.5s infinite linear;
+  color:orange;
+  background:
+    linear-gradient(currentColor 0 0),
+    linear-gradient(currentColor 0 0),
+    linear-gradient(currentColor 0 0),
+    linear-gradient(currentColor 0 0);
+  background-size: 21px 21px;
+  background-repeat:no-repeat;
+  animation: sh5 1.5s infinite cubic-bezier(0.3,1,0,1);
 }
-.loading>div:before,
-.loading>div:after {
-  content: "";
-  grid-area: 1/1;
-  background:#514b82;
-  animation: 
-    sh6-1 1.5s infinite linear,
-    sh6-2 1.5s infinite linear;
-}
-.loading>div:after {
-  --s:-1;
-  animation-direction: reverse;
-}
-
-@keyframes sh6-0 {
-  0%,9%,91%,100% {background:#514b82}
-  10%,90%        {background:#0000}
-}
-@keyframes sh6-1 {
-  0%,33%   {clip-path: polygon(0   0,50% 100%,100% 0,100% 100%,0 100%)}
-  66%,100% {clip-path: polygon(50% 0,50% 100%,50%  0,100% 100%,0 100%)}
-}
-@keyframes sh6-2 {
-  0%,10%,90%,100% {transform: scale(var(--s,1)) translateY(0)}
-  33%,66%         {transform: scale(var(--s,1)) translateY(50%)}
+@keyframes sh5 {
+ 0%   {background-position: 0    0,100% 0   ,100% 100%,0 100%}
+ 33%  {background-position: 0    0,100% 0   ,100% 100%,0 100%;width:60px;height: 60px}
+ 66%  {background-position: 100% 0,100% 100%,0    100%,0 0   ;width:60px;height: 60px}
+ 100% {background-position: 100% 0,100% 100%,0    100%,0 0   }
 }
