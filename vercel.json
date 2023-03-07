@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "web-moto--service-store",
+  "name": "web-moto-service-store",
   "builds": [
      { "src": "server.js", "use": "@vercel/node" }
   ],
