@@ -150,7 +150,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 //update User password:
 
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-  const user = await await User.findById(req.user.id).select('+password')
+  const user = await User.findById(req.user.id).select('+password')
 
   const isPassMatched = await user.comparePassword(req.body.oldPassword)
 
