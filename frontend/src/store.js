@@ -9,7 +9,7 @@ import { newReviewReducer,
         reviewReducer,
         productReviewsReducer,
         productCataReducer} from './reducers/productReducer';
-import{userReducer, forgotPasswordReducer, profileReducer} from'./reducers/userReducer'
+import{userReducer, forgotPasswordReducer, profileReducer, allUsersReducer, userDetailsReducer} from'./reducers/userReducer'
 import { cartReducer } from './reducers/cartReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer,orderReducerUser } from './reducers/orderReducer';
 const reducer= combineReducers({
@@ -26,13 +26,13 @@ const reducer= combineReducers({
     newReview:newReviewReducer,
     product: productReducer,
     allOrders: allOrdersReducer ,
-    // allUsers:allUsersReducer,
+    allUsers: allUsersReducer,
     newProduct: newProductReducer ,
     order: orderReducer,
     orderUser:orderReducerUser,
-    // userDetails: userDetailsReducer ,
+    userDetails: userDetailsReducer ,
     review: reviewReducer,
-    // productReviews: productReviewsReducer,
+    productReviews: productReviewsReducer,
     productCata:productCataReducer
 
 })

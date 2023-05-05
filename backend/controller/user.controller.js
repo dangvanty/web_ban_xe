@@ -90,7 +90,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false })
 
-  const resetPasswordUrl = `https://web-tuoi-hoa.herokuapp.com/password/reset/${resetToken}`
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`
 
   const message = `Link reset mật khẩu của bạn là: \n\n ${resetPasswordUrl} \n\n Nếu bạn không cần email này thì vui lòng bỏ qua nó.`
 
@@ -204,5 +204,70 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+  })
+})
+
+//get all user -- admin
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find()
+
+  res.status(200).json({
+    success: true,
+    users,
+  })
+})
+
+//get single user --admin
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id)
+
+  if (!user) {
+    return next(new ErrorHander(`User không tồn tại với ID: ${req.params.id}`))
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  })
+})
+
+//update User role (admin)
+
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserProfile = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  }
+
+  await User.findByIdAndUpdate(req.params.id, newUserProfile, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  })
+
+  res.status(200).json({
+    success: true,
+  })
+})
+
+// delete User --admin:
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id)
+
+  if (!user) {
+    return next(
+      new ErrorHander(`User không tồn tại với ID: ${req.params.id}`, 400),
+    )
+  }
+
+  const imageId = user.avatar.public_id
+
+  await cloudinary.v2.uploader.destroy(imageId)
+
+  await user.remove()
+  res.status(200).json({
+    success: true,
+    message: 'Bạn đã xóa User thành công',
   })
 })
