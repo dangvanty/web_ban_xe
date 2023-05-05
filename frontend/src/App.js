@@ -34,6 +34,9 @@ import OrderDetails from "./component/Order/OrderDetails";
 import EditOrder from "./component/admin/EditOrder";
 import OrderList from "./component/admin/OrderList";
 import RegisterService from "./component/layout/Contact/Contact";
+import UsersList from "./component/admin/UserList";
+import UpdateUser from "./component/admin/UpdateUser";
+import ProductReviews from "./component/admin/ProductReviews";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const fake={avatar:{url:null}}
@@ -80,6 +83,11 @@ function App() {
         <Route path="/admin/product/:id" element={<UpdateProduct/>} />
         <Route path="/admin/orders" element={<OrderList/>} />
         <Route path="/admin/order/:id" element={<EditOrder/>} />
+        <Route path="/admin/users" element={<UsersList/>} />
+        
+        <Route path="/admin/user/:id" element={<UpdateUser/>} />
+
+        <Route path="/admin/reviews" element={<ProductReviews/>} />
         </Route>
 
 

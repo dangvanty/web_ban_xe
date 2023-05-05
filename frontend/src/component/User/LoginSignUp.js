@@ -186,6 +186,10 @@ const LoginSignUp = () => {
                 </div>
                 <Link to="/password/forgot">Quên mật khẩu ?</Link>
                 <input type="submit" value="Đăng nhập" className="loginBtn" />
+                <div className="account_admin">
+                  <p>tk admin:  <strong>dangvantydh@gmail.com</strong></p>
+                  <p>mk:  <strong>12345678</strong></p>
+                </div>
               </form>
               <form
                 className="signUpForm"
